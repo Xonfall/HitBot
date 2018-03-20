@@ -20,10 +20,23 @@
   align-items: center;
 }
 
+.Textarea {
+  padding: 10px;
+  width: 418px;
+  min-width: 418px;
+  min-height: 40px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+.Textarea:focus {
+  outline: none;
+  border: 1px solid rgba(0,0,0,0.6);
+}
+
 .user {
     padding: 20px;
     width: 400px;
-    margin: auto;
     background-color: #FFCDD2;
     border-radius: 4px;
     margin-bottom: 20px;
@@ -33,7 +46,6 @@
 .bot {
     padding: 20px;
     width: 400px;
-    margin: auto;
     background-color: #FFF9C4;
     border-radius: 4px;
     margin-bottom: 20px;

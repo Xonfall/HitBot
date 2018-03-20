@@ -18,6 +18,7 @@ class App extends Component {
         <div className="Content">
           <Bubble type="user" text="Salut !" />
           <Bubble type="bot" text="Hello boi. Je suis Hit!" />
+          <textarea className="Textarea"></textarea>
         </div>
       </div>
     );
