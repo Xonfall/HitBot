@@ -1,9 +1,6 @@
-import React, { Component } from 'react';
-import './App.css';
-import Bubble from './Bubble';
+import React, { Component } from 'react'; 
 import LeftPart from './LeftPart';
 import RightPart from './RightPart';
-import { doSearch } from '../GeniusAPI';
 
 class App extends Component {
 
@@ -17,5 +14,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;

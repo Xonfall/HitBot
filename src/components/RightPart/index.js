@@ -5,7 +5,6 @@ import Home from './Home';
 import Lyrics from './Lyrics';
 import Artist from './Artist';
 import Profile from './Profile';
-import '../App.css';
 import './style.css';
 
 class RightPart extends Component {
