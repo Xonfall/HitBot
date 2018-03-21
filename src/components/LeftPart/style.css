@@ -1,0 +1,8 @@
+.LeftPart{
+	position:fixed;
+	width:55%;
+	height:100vh;
+	top:0;
+	left:0;
+	background:#F4F4F4;
+}
