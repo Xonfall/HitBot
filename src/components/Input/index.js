@@ -1,23 +1,23 @@
-class NameForm extends React.Component {
-      
-    handleChange(event) {
-      this.setState({value: event.target.value});
-    }
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import '../App.css';
+
+class Input extends Component {
   
-    handleSubmit(event) {
-      alert('A name was submitted: ' + this.state.value);
-      event.preventDefault();
-    }
-  
+    static propTypes = {
+      getTextArea: PropTypes.func.isRequired
+   };
+
+   handleChange = (event) => {
+    //this.setState({value: event.target.value});
+    this.props.getTextArea(event.target.value);
+  }
+
     render() {
+
       return (
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Name:
-            <input type="text" value={this.state.value} onChange={this.handleChange} />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
+        <textarea onChange={ this.handleChange } />
       );
     }
   }
+  export default Input;

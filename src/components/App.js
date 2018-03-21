@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import './App.css';
 import Bubble from './Bubble';
 import { requestServer } from '../BotAPI';
+import Input from './Input';
 
 class App extends Component {
 
     state = {
         message: null,
         userMessage: null
+    }
+
+    getTextArea = (text) => {
+        this.setState({userMessage: text});
     }
 
     componentWillMount() {
@@ -18,6 +23,9 @@ class App extends Component {
     }
 
     render() {
+
+        const { userMessage } = this.state;
+
         return (
             <div className="App">
                 <header className="App-header">
@@ -26,7 +34,10 @@ class App extends Component {
                 <div className="Content">
                     <Bubble type="user" text="" />
                     <Bubble type="bot" text={this.state.message} />
-                    <textarea className="Textarea" onchange={this.handleChange}></textarea>
+                    {userMessage && 
+                        <Bubble type="user" text={userMessage} />
+                    }
+                    <Input getTextArea={this.getTextArea}/>
                 </div>
             </div>
         );
