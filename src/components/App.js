@@ -22,24 +22,28 @@ class App extends Component {
         });
     }
 
+    handleSubmit(event) {
+        event.preventDefault();
+      }
+
     render() {
 
         const { userMessage } = this.state;
 
         return (
-            <div className="App">
-                <header className="App-header">
-                    <h1 className="App-title">Welcome to Hit!</h1>
-                </header>
-                <div className="Content">
-                    <Bubble type="user" text="" />
-                    <Bubble type="bot" text={this.state.message} />
-                    {userMessage && 
-                        <Bubble type="user" text={userMessage} />
-                    }
-                    <Input getTextArea={this.getTextArea}/>
+            <form onSubmit={this.handleSubmit}>
+                <div className="App">
+                    <header className="App-header">
+                        <h1 className="App-title">Welcome to Hit!</h1>
+                    </header>
+                    <div className="Content">
+                        <Bubble type="user" text="" />
+                        <Bubble type="bot" text={this.state.message} />
+
+                        <Input getTextArea={this.getTextArea}/>
+                    </div>
                 </div>
-            </div>
+            </form>
         );
     }
 }
