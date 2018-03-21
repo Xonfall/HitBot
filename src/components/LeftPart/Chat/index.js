@@ -42,14 +42,16 @@ class Chat extends Component {
 
     return (
       <div className="Content">
-          {messages.length > 0 &&
-            messages.map( msg => {
-              return(
-                <Bubble type={msg.type} text={msg.content} />
-              );
-            })
-          }
-        {/*}<Suggestions />*/}
+        <div className="MessagesContent">
+            {messages.length > 0 &&
+              messages.map( msg => {
+                return(
+                  <Bubble type={msg.type} text={msg.content} />
+                );
+              })
+            }
+          {/*}<Suggestions />*/}
+        </div>
         <form onSubmit={this.handleSubmit}>
             <Input value={userMessage} getTextArea={this.getTextArea}/>
         </form>
