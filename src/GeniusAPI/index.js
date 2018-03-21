@@ -27,7 +27,7 @@ const xhr = new XMLHttpRequest(); //XML HTTP Request
 //
 // }
 
-export const getSong = (id) => {
+export const getSongs = (id) => {
   xhr.open("GET", APISong+id+"?"+accessToken, false);
   xhr.send();
   const response = xhr.response;
@@ -46,12 +46,12 @@ export const doSearch = (slug) => {
   let json = JSON.parse(response);
   // let song = json['response']['song'];
 
-  return(json.response);
+  return(json.response['hits']);
 }
 
 export const getArtist = (name) => {
   const search = doSearch(name);
-  const idArtist = search['hits'][0].result.primary_artist.id;
+  const idArtist = search[0].result.primary_artist.id;
 
   xhr.open("GET", APIArtist+idArtist+"?text_format=html&"+accessToken, false);
   xhr.send();

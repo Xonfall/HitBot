@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Bubble from './Bubble';
-import { doSearch, getSong, getArtist, getLyrics } from '../GeniusAPI';
+import { doSearch, getSongs, getArtist, getLyrics } from '../GeniusAPI';
 
 class App extends Component {
 
@@ -10,8 +10,8 @@ class App extends Component {
     // const test = getLyrics("test");
     // console.log(test);
 
-    const search = getArtist('Aznavour');
-    console.log(search);
+    const search = getArtist('Booba');
+    const songs = doSearch('Booba');
 
     function createDesc() {
       return {__html: search.description};
@@ -27,6 +27,15 @@ class App extends Component {
           <Bubble type="bot" text="Hello boi. Je suis Hit!" />
           <textarea className="Textarea"></textarea>
           <div dangerouslySetInnerHTML={createDesc()} />
+          <div>
+            <span>Principaux sons :</span><br/>
+            {songs.map(song => {
+              console.log(song);
+                return(
+                  <span key={song.result.id}>{song.result.title}<br/></span>
+                );
+              })}
+          </div>
         </div>
       </div>
     );
