@@ -17,7 +17,7 @@ class Input extends Component {
     render() {
 
       return (
-        <input type="text" value={this.props.value} onChange={ this.handleChange } />
+        <input className="Input" type="text" value={this.props.value} onChange={ this.handleChange } />
       );
     }
   }
