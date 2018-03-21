@@ -1,28 +1,35 @@
 import React, { Component } from 'react';
 import './App.css';
 import Bubble from './Bubble';
-import { doSearch } from '../GeniusAPI';
+import { requestServer } from '../BotAPI';
 
 class App extends Component {
 
-  render() {
+    state = {
+        message: null,
+        userMessage: null
+    }
 
-    const search = doSearch("Who am I? Someone that's afraid to let go, uh");
-    console.log(search);
+    componentWillMount() {
+        let request = requestServer('Qui chante la macarena', (response) => {
+            let result = response.result.fulfillment.speech;
+            this.setState({message: result});
+        });
+    }
 
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to Hit!</h1>
-        </header>
-        <div className="Content">
-          <Bubble type="user" text="Salut !" />
-          <Bubble type="bot" text="Hello boi. Je suis Hit!" />
-          <textarea className="Textarea"></textarea>
-        </div>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="App">
+                <header className="App-header">
+                    <h1 className="App-title">Welcome to Hit!</h1>
+                </header>
+                <div className="Content">
+                    <Bubble type="user" text="" />
+                    <Bubble type="bot" text={this.state.message} />
+                    <textarea className="Textarea" onchange={this.handleChange}></textarea>
+                </div>
+            </div>
+        );
+    }
 }
-
 export default App;
