@@ -3,6 +3,7 @@ import './App.css';
 import Bubble from './Bubble';
 import { requestServer } from '../BotAPI';
 import Input from './Input';
+import { doSearch, getSongs, getArtist, getLyrics } from '../GeniusAPI';
 
 class App extends Component {
 
@@ -32,6 +33,9 @@ class App extends Component {
     }
 
     render() {
+
+        // const search = getArtist('Booba');
+        // const songs = doSearch('Booba');
 
         const { messages, userMessage } = this.state;
 
