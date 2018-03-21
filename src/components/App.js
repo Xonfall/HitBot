@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
 import Bubble from './Bubble';
-import { doSearch } from '../GeniusAPI';
+import { doSearch, getSong, getArtist, getLyrics } from '../GeniusAPI';
 
 class App extends Component {
 
   render() {
 
-    const search = doSearch("Who am I? Someone that's afraid to let go, uh");
+    // const test = getLyrics("test");
+    // console.log(test);
+
+    const search = getArtist('Aznavour');
     console.log(search);
+
+    function createDesc() {
+      return {__html: search.description};
+    }
 
     return (
       <div className="App">
@@ -19,6 +26,7 @@ class App extends Component {
           <Bubble type="user" text="Salut !" />
           <Bubble type="bot" text="Hello boi. Je suis Hit!" />
           <textarea className="Textarea"></textarea>
+          <div dangerouslySetInnerHTML={createDesc()} />
         </div>
       </div>
     );
