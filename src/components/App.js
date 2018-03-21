@@ -8,42 +8,51 @@ class App extends Component {
 
     state = {
         message: null,
-        userMessage: null
+        messages: [],
+        userMessage: "",
     }
 
     getTextArea = (text) => {
         this.setState({userMessage: text});
     }
 
-    componentWillMount() {
-        let request = requestServer('Qui chante la macarena', (response) => {
-            let result = response.result.fulfillment.speech;
-            this.setState({message: result});
-        });
-    }
+    handleSubmit = (e) => {
+      e.preventDefault();
+      const { userMessage, messages } = this.state;
+      let newMessage = {content: userMessage, type: "user"}
+      messages.push(newMessage)
+      this.setState({messages, userMessage: ''})
 
-    handleSubmit(event) {
-        event.preventDefault();
-      }
+      let request = requestServer(userMessage, (response) => {
+          let result = response.result.fulfillment.speech;
+          newMessage = {content: result, type: "bot"}
+          messages.push(newMessage)
+          this.setState({messages})
+      });
+    }
 
     render() {
 
-        const { userMessage } = this.state;
+        const { messages, userMessage } = this.state;
 
         return (
-            <form onSubmit={this.handleSubmit}>
                 <div className="App">
                     <header className="App-header">
                         <h1 className="App-title">Welcome to Hit!</h1>
                     </header>
                     <div className="Content">
-                        <Bubble type="user" text="" />
-                        <Bubble type="bot" text={this.state.message} />
-
-                        <Input getTextArea={this.getTextArea}/>
+                        {messages.length > 0 &&
+                          messages.map( msg => {
+                            return(
+                              <Bubble type={msg.type} text={msg.content} />
+                            );
+                          })
+                        }
+                      <form onSubmit={this.handleSubmit}>
+                          <Input value={userMessage} getTextArea={this.getTextArea}/>
+                      </form>
                     </div>
                 </div>
-            </form>
         );
     }
 }

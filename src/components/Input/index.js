@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import '../App.css';
 
 class Input extends Component {
-  
+
     static propTypes = {
-      getTextArea: PropTypes.func.isRequired
+      getTextArea: PropTypes.func.isRequired,
+      value: PropTypes.string.isRequired
    };
 
    handleChange = (event) => {
@@ -16,7 +17,7 @@ class Input extends Component {
     render() {
 
       return (
-        <textarea onChange={ this.handleChange } />
+        <input type="text" value={this.props.value} onChange={ this.handleChange } />
       );
     }
   }
