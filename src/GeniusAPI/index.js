@@ -24,7 +24,6 @@ export const doSearch = (slug) => {
 export const getSong = (title) => {
   const search = doSearch(title);
   const idSong = search.length > 0 ? search[0].result.id : null;
-  console.log(idSong);
 
   let result = null
 
@@ -78,10 +77,11 @@ export const getSongs = (name) => {
   const songs = [];
 
   search.map(song => {
+
     songs.push({
       title: song.result.title,
       artist: song.result.primary_artist.name,
-      image: song.result.header_image_url
+      image: song.result.header_image_url,
     })
   });
   return songs;

@@ -86,6 +86,12 @@ class Chat extends Component {
 
     return (
       <div className="Content" ref={(el) => { this.messagesEnd = el; }}>
+        <section className='userSec'>
+          <div className='active'>
+            <img src="/picto.png"/>
+          </div>
+          <Bubble type='bot' text='Bienvenue sur Hit! Posez moi des questions sur vos artistes favoris !' />
+        </section>
           {messages.length > 0 &&
             messages.map( msg => {
               return(

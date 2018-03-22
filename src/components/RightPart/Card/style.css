@@ -1,5 +1,4 @@
 .Card{
-	background:red;
 	min-height:180px;
 	border-radius:12px;
 	overflow:hidden;
@@ -35,4 +34,8 @@
 
 .cardInfos span{
 	color:grey!important;
+}
+
+img.recommanded {
+	width: 208px;
 }

@@ -3,33 +3,28 @@ import PropTypes from 'prop-types';
 import './style.css';
 
 class List extends React.Component {
+
+  static propTypes = {
+    items: PropTypes.array,
+   };
+
   render() {
+
+    const { items = null} = this.props;
 
     return (
       <section className='listImg'>
-        <h2>Ceci est un titre</h2>
         <ul>
-          <li>
-            <img src=''/>
-            <div>
-              <p>Flip</p>
-              <p>2017</p>
-            </div>
-          </li>
-          <li>
-            <img src=''/>
-            <div>
-              <p>Flip</p>
-              <p>2017</p>
-            </div>
-          </li>
-          <li>
-            <img src=''/>
-            <div>
-              <p>Flip</p>
-              <p>2017</p>
-            </div>
-          </li>
+          {items && items.map((item, i) => {
+            return(
+              <li key={i}>
+                <img src={item.image}/>
+                <div>
+                  <p>{item.title}</p>
+                </div>
+              </li>
+            );
+          })}
         </ul>
       </section>
     )

@@ -38,6 +38,7 @@
 
 .react-tabs__tab{
 	position:relative;
+	cursor: pointer;
 }
 
 .react-tabs__tab:before{

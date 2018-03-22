@@ -12,28 +12,31 @@ class RightPart extends Component {
 
   static propTypes = {
       artist: PropTypes.object,
+      recommanded: PropTypes.array,
    };
 
   render() {
 
-    const { artist } = this.props;
+    const { artist, recommanded } = this.props;
 
     return (
       <div className='RightPart'>
       	<Tabs>
           <TabList>
-            <Tab>Accueil</Tab>
             <Tab>Artistes</Tab>
+            <Tab>Recommandations</Tab>
             <Tab>Paroles</Tab>
             <Tab>Profil</Tab>
           </TabList>
+
+          <TabPanel>
+          	<Artist artist={artist} recommanded={recommanded}/>
+          </TabPanel>
+
           <TabPanel>
           	<Home/>
           </TabPanel>
 
-          <TabPanel>
-          	<Artist artist={artist}/>
-          </TabPanel>
 
           <TabPanel>
           	<Lyrics/>

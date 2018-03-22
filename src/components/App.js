@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LeftPart from './LeftPart';
 import RightPart from './RightPart';
-import { doSearch, getSongs, getArtist } from '../GeniusAPI';
+import { doSearch, getSongs, getSong, getArtist } from '../GeniusAPI';
 
 import axios from 'axios';
 
@@ -10,12 +10,15 @@ class App extends Component {
   state = {
     artist: null,
     songs: null,
+    recommanded: null,
   }
 
   componentWillMount() {
-    const artist = getArtist("Kendrick Lamar");
+    const artist = getArtist("Michael Jackson");
+    const recommanded = getSongs("Michael Jackson");
     this.setState({
-      artist
+      artist,
+      recommanded,
     })
   }
 
@@ -23,8 +26,10 @@ class App extends Component {
     let result = null;
     if (type === 'artist') {
       result = getArtist(name);
+      const recommanded = getSongs(name);
       this.setState({
-        artist: result
+        artist: result,
+        recommanded
       });
     } else if (type === 'songs') {
       result = getSongs(name);
@@ -45,7 +50,7 @@ class App extends Component {
 
   render() {
 
-    const { artist } = this.state;
+    const { artist, recommanded } = this.state;
     // const search = getArtist('We are the champions');
     // console.log(search);
 
@@ -54,7 +59,10 @@ class App extends Component {
     return (
       <div className="App">
           <LeftPart onSearch={this.onSearch} />
-          <RightPart artist={artist && artist} />
+          <RightPart
+            artist={artist && artist}
+            recommanded={recommanded && recommanded}
+          />
       </div>
     );
   }
