@@ -2,17 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 
-class Form extends React.Component {
+class List extends React.Component {
   render() {
 
     return (
-      <section>
+      <section className='listImg'>
         <h2>Ceci est un titre</h2>
         <ul>
           <li>
             <img src=''/>
-            <p>Flip</p>
-            <p>2017</p>
+            <div>
+              <p>Flip</p>
+              <p>2017</p>
+            </div>
+          </li>
+          <li>
+            <img src=''/>
+            <div>
+              <p>Flip</p>
+              <p>2017</p>
+            </div>
+          </li>
+          <li>
+            <img src=''/>
+            <div>
+              <p>Flip</p>
+              <p>2017</p>
+            </div>
           </li>
         </ul>
       </section>
@@ -20,4 +36,4 @@ class Form extends React.Component {
   }
 }
 
-export default Form;
+export default List;

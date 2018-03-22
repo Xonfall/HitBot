@@ -7,7 +7,7 @@ class LeftPart extends Component {
   render() {
 
     return (
-      <img className='logo' src=''/>
+      <img className='logo' src='https://ffsnw.herokuapp.com/img/logos/logo_background.png'/>
     );
   }
 }

@@ -1,0 +1,35 @@
+.listImg{
+	width:calc(45% - 25px);
+	margin-right:0;
+	margin-left:0;
+	float:left;
+}
+.listImg:nth-of-type(2n){
+	margin-right:50px;
+	margin-left:5%;
+}
+.listImg h2, .listImg pdd{
+	margin:0;
+	padding-bottom:20px;
+}
+
+.listImg ul{
+	margin:0;
+	padding:0;
+}
+.listImg ul li{
+	margin-top:20px;
+	overflow:hidden;
+	margin-bottom:40px;
+}
+.listImg img{
+	width:60px;
+	float:left;
+}
+.listImg div{
+	width:calc(100% - 80px);
+	float:right;
+}
+.listImg p{
+	margin:0;
+}

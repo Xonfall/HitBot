@@ -16,11 +16,17 @@ header nav a{
 	width:25%;
 	padding-top:5px;
 	float:left;
+	cursor:pointer;
 	text-align:center;
 	text-decoration:none;
 	color:#FAFAFA;
 	line-height:60px;
 	position:relative;
+	transition:.5s;
+}
+
+header nav a:hover{
+	background:#272727;
 }
 
 header nav a.active:before{

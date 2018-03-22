@@ -6,9 +6,7 @@ class Back extends React.Component {
   render() {
 
     return (
-      <section className='back'>
-      	<p>Retour</p>
-      </section>
+      	<p className='back'>Retour</p>
     )
   }
 }

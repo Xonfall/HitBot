@@ -1,0 +1,20 @@
+.paroles{
+	width:90%;
+	margin:0 5%;
+}
+
+.paroles span{
+	display: block;
+	color:#8B8B8B!important;
+}
+
+.lyrics h3{
+	color:#FAFAFA;
+	font-size:25px;
+}
+
+.paroles .par{
+	margin-top:25px;
+	margin-bottom:10px;
+	color:#FAFAFA!important;
+}

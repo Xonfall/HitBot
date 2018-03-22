@@ -1,38 +1,70 @@
 .Content {
-  width: 350px;
+  width: 90%;
   margin: auto;
-  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 500px;
+  height:calc(100vh - 90px);
   overflow: auto;
+}
+.chatUser{
+  position:fixed;
+  bottom:0;
+  height:70px;
+  width:100%;
+  left:0;
+  background:#FAFAFA;
+  border-top: 1px solid rgba(0,0,0,0.3);
+}
+
+.chatUser input[type='submit']{
+  background:transparent;
+  border:none;
+  margin-left:10px;
+}
+
+.chatUser button{
+    width: 45px;
+    height: 45px;
+    background: red;
+    border: none;
+    position: relative;
+    bottom: -12px;
+    border-radius: 50px;
+    margin-left: 30px;
 }
 
 .Input {
-  padding: 10px;
-  width: 100%;
+  line-height:70px;
+  padding:0 2.5%;
+  width:calc(50% - 200px);
+  border:none;
+  background:transparent;
   border-radius: 4px;
-  border: 1px solid rgba(0,0,0,0.3);
 }
 .Input:focus {
   outline: none;
-  border: 1px solid rgba(0,0,0,0.6);
 }
 
 .user {
     padding: 20px;
+    box-sizing:border-box;
     width: 100%;
-    background-color: #FFCDD2;
-    border-radius: 4px;
+    background-color: #0095C9;
+    border-radius: 12px;
+    border-top-right-radius:0;
     margin-bottom: 20px;
+    color:#FAFAFA;
     text-align: right;
 }
 
 .bot {
     padding: 20px;
+    box-sizing:border-box;
     width: 100%;
-    background-color: #FFF9C4;
-    border-radius: 4px;
+    background-color: #FAFAFA;
+    border:1px solid #e8e8e8;
+    border-radius: 12px;
+    border-top-left-radius:0;
     margin-bottom: 20px;
 }
