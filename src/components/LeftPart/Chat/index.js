@@ -89,14 +89,14 @@ class Chat extends Component {
           {messages.length > 0 &&
             messages.map( msg => {
               return(
-                <section className='userSec'>
+                <section key={msg.key} className='userSec'>
                   <div className={ msg.type === 'user' ? 'hidden' : 'active' }>
                     <img src="/picto.png"/>
                   </div>
                   <div className={ msg.type === 'user' ? 'active userCase' : 'hidden' }>
-                    <i class="fa fa-user"></i>
+                    <i className="fa fa-user"></i>
                   </div>
-                  <Bubble key={msg.key} type={msg.type} text={msg.content} />
+                  <Bubble type={msg.type} text={msg.content} />
                 </section>
               );
             })
@@ -105,7 +105,7 @@ class Chat extends Component {
         <form className='chatUser' onSubmit={this.handleSubmit}>
             <Input value={userMessage} getTextArea={this.getTextArea}/>
             <input type='submit' value='Envoyer'/>
-            <button><i class="fa fa-microphone"></i></button>
+            <button><i className="fa fa-microphone"></i></button>
         </form>
       </div>
     );

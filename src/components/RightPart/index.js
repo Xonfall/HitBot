@@ -10,7 +10,13 @@ import './style.css';
 
 class RightPart extends Component {
 
+  static propTypes = {
+      artist: PropTypes.object,
+   };
+
   render() {
+
+    const { artist } = this.props;
 
     return (
       <div className='RightPart'>
@@ -26,13 +32,13 @@ class RightPart extends Component {
           </TabPanel>
 
           <TabPanel>
-          	<Lyrics/>
+          	<Artist artist={artist}/>
           </TabPanel>
 
           <TabPanel>
-          	<Artist/>
+          	<Lyrics/>
           </TabPanel>
-          
+
           <TabPanel>
           	<Profile/>
           </TabPanel>

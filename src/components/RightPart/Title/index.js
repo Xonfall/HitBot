@@ -3,11 +3,18 @@ import PropTypes from 'prop-types';
 import './style.css';
 
 class Title extends React.Component {
+
+  static propTypes = {
+    name: PropTypes.string,
+   };
+
   render() {
+
+    const { name } = this.props;
 
     return (
       <section className='Title'>
-      	<h2 className='subtitle'>Titre</h2>
+      	<h2 className='subtitle'>{name}</h2>
       	<h3>Sous-titre</h3>
       </section>
     )

@@ -8,13 +8,22 @@ import List from '../List';
 
 
 class Artist extends React.Component {
+
+  static propTypes = {
+    artist: PropTypes.object,
+   };
+
   render() {
+
+    const { artist } = this.props;
+
+    console.log(artist);
 
     return (
       <section>
-        <Fullimg/>
+        <Fullimg src={artist.image}/>
         <Back/>
-        <Title/>
+        <Title name={artist.name} />
         <Parole/>
         <List/>
         <List/>
