@@ -15,6 +15,8 @@ class Chat extends Component {
     // Props injected by SpeechRecognition
     transcript: PropTypes.string,
     resetTranscript: PropTypes.func,
+    startListening : PropTypes.func,
+    stopListening : PropTypes.func,
     browserSupportsSpeechRecognition: PropTypes.bool,
 
       onSearch: PropTypes.func.isRequired,
@@ -24,10 +26,29 @@ class Chat extends Component {
       message: null,
       messages: [],
       userMessage: "",
+      recording: false,
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({userMessage: nextProps.transcript});
+  }
+
+  handleMicroButton = () => {
+
+    const { resetTranscript, startListening, stopListening } = this.props;
+    const { recording } = this.state;
+
+    if (recording) {
+      stopListening();
+      this.setState({
+        recording: false,
+      })
+    } else {
+      startListening();
+      this.setState({
+        recording: true,
+      })
+    }
   }
 
   getTextArea = (text) => {
@@ -104,7 +125,7 @@ class Chat extends Component {
 
   render() {
 
-      const { messages, userMessage } = this.state;
+      const { messages, userMessage, recording } = this.state;
       const { transcript, resetTranscript, browserSupportsSpeechRecognition } = this.props
 
     return (
@@ -134,11 +155,11 @@ class Chat extends Component {
         <form className='chatUser' onSubmit={this.handleSubmit}>
             <Input value={userMessage} getTextArea={this.getTextArea}/>
             <input type='submit' value='Envoyer'/>
-            <button onClick={resetTranscript}><i className="fa fa-microphone"></i></button>
+            <button className={recording ? 'onRecord' : 'offRecord'} onClick={this.handleMicroButton}><i className="fa fa-microphone"></i></button>
         </form>
       </div>
     );
   }
 }
 
-export default SpeechRecognition(Chat);
+export default SpeechRecognition({autoStart: false})(Chat);
