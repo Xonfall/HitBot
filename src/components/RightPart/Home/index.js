@@ -1,19 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Swiper from '../Swiper';
+import SwiperCard from '../SwiperCard';
 import Ads from '../Ads';
 import Historic from '../Historic';
 
 class Logo extends React.Component {
+
+  state ={
+    history: [ {nom: 'oui'},{nom: 'oui'},{nom: 'oui'} ]
+  }
+
   render() {
 
     return (
       <section>
-        <Swiper/>
+        <SwiperCard titre='Musiques recommandés pour vous'/>
         <Ads/>
-        <Swiper/>
-        <Historic/>
-        <Swiper/>
+        <SwiperCard titre='Artistes recommandés pour vous'/>
+        <Historic tableau={this.state.history}/>
+        <SwiperCard titre='Top chansons' />
       </section>
     )
   }

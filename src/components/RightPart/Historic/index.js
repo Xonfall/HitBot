@@ -10,10 +10,10 @@ class Historic extends Component {
       <section>
         <h2>Dernières recherches</h2>
         <ul className='list'>
-          <li><p>Une recherche ...<button>x</button></p></li>
-          <li><p>Une recherche ...<button>x</button></p></li>
-          <li><p>Une recherche ...<button>x</button></p></li>
-          <li><p>Une recherche ...<button>x</button></p></li>
+          {this.props.tableau.map(t => (
+              <li><p>{t.nom}</p><button>x</button></li>
+            ))
+          }
         </ul>
       </section>
     );

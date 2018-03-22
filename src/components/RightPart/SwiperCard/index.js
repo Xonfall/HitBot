@@ -15,7 +15,7 @@ class SwiperCard extends React.Component {
 
     return (
     	<section>
-    	<h2>Artistes recommandés pour vous</h2>
+    	<h2>{this.props.titre}</h2>
 	      <Swiper {...params}>
 	        <div><Card/></div>
 	        <div><Card/></div>
