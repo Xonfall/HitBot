@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import './style.css';
 
 class LeftPart extends Component {
@@ -8,12 +9,14 @@ class LeftPart extends Component {
 
     return (
       <header>
-      	<nav>
-      		<a className='active' alt="">Accueil</a>
-      		<a alt="">Artistes</a>
-          <a alt="">Paroles</a>
-      		<a alt="">Profil</a>
-      	</nav>
+        <Tabs>
+          <TabList>
+            <Tab>Accueil</Tab>
+            <Tab>Artistes</Tab>
+            <Tab>Paroles</Tab>
+            <Tab>Profil</Tab>
+          </TabList>
+        </Tabs>
       </header>
     );
   }

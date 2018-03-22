@@ -7,8 +7,6 @@ class Fullimg extends React.Component {
 
     return (
       <section className='bannerImg'>
-        <div>
-        </div>
       </section>
     )
   }

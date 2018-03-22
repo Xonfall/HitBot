@@ -10,7 +10,7 @@ class Artist extends React.Component {
 
     return (
       <section>
-        <fullImg/>
+        <Fullimg/>
         <Back/>
         <Title/>
         <Parole/>

@@ -9,11 +9,11 @@ class Historic extends Component {
     return (
       <section>
         <h2>Dernières recherches</h2>
-        <ul>
-          <li><p>Une recherche ...</p><span>x</span></li>
-          <li><p>Une recherche ...</p><span>x</span></li>
-          <li><p>Une recherche ...</p><span>x</span></li>
-          <li><p>Une recherche ...</p><span>x</span></li>
+        <ul className='list'>
+          <li><p>Une recherche ...<button>x</button></p></li>
+          <li><p>Une recherche ...<button>x</button></p></li>
+          <li><p>Une recherche ...<button>x</button></p></li>
+          <li><p>Une recherche ...<button>x</button></p></li>
         </ul>
       </section>
     );

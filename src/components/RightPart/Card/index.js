@@ -10,10 +10,10 @@ class Card extends Component {
         <a href='#'>
           <article className='Card'>
             <div>
-              <p>Écouter sur <img src="#" alt="logo deezer"/></p>
+              <p>Écouter sur Deezer</p>
             </div>
           </article>
-          <p><span>Prime</span>Merlose</p>
+          <p className='cardInfos'><span>Prime</span><br/>Merlose</p>
         </a>
     );
   }

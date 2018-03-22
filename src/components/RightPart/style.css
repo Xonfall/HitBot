@@ -1,5 +1,4 @@
 .RightPart{
-	padding-top:90px;
 	overflow:hidden;
 	position:absolute;
 	width:45%;
@@ -8,6 +7,48 @@
 	right:0;
 	background:#171717;
 }
+
 .RightPart span, .RightPart a, .RightPart p{
 	color:#FAFAFA;
+}
+
+.react-tabs__tab-list{
+	position: fixed;
+	width:45%;
+	overflow:hidden;
+	color:#FAFAFA!important;
+	top:0;
+	right:0;
+	padding:0;
+	margin:0;
+	z-index:10;
+	list-style-type:none;
+	background:#171717;
+	border-bottom:solid 2px #393939;
+}
+
+.react-tabs__tab-list li{
+	width:25%;
+	float:left;
+	text-align:center;
+	line-height:60px;
+}
+
+.react-tabs__tab{
+	position:relative;
+}
+
+.react-tabs__tab:before{
+	content:'';
+	transition:.5s;
+	width:0;
+	height:5px;
+	position:absolute;
+	top:0;
+	background:#0095C9;
+	left:0;
+}
+
+.react-tabs__tab--selected:before{
+	width: 100%;
 }

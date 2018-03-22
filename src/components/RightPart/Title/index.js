@@ -7,7 +7,7 @@ class Title extends React.Component {
 
     return (
       <section className='Title'>
-      	<h2>Titre</h2>
+      	<h2 className='subtitle'>Titre</h2>
       	<h3>Sous-titre</h3>
       </section>
     )

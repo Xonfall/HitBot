@@ -1,15 +1,15 @@
 import React from 'react';
 import './style.css';
 
-class Example extends React.Component {
+class Ads extends React.Component {
   render() {
 
     return (
-      <div className='ads'>
+      <section className='ads'>
         <a href=''></a>
-      </div>
+      </section>
     )
   }
 }
 
-export default Example;
+export default Ads;

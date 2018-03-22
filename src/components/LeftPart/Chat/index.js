@@ -24,6 +24,10 @@ class Chat extends Component {
       this.setState({userMessage: text});
   }
 
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     const { userMessage, messages } = this.state;
@@ -46,6 +50,7 @@ class Chat extends Component {
         messages.push(newMessage)
         this.setState({messages})
     });
+    this.scrollToBottom();
   }
 
   render() {
@@ -53,19 +58,19 @@ class Chat extends Component {
       const { messages, userMessage } = this.state;
 
     return (
-      <div className="Content">
-        <div className="MessagesContent">
-            {messages.length > 0 &&
-              messages.map( msg => {
-                return(
-                  <Bubble key={msg.key} type={msg.type} text={msg.content} />
-                );
-              })
-            }
-          {/*}<Suggestions />*/}
-        </div>
-        <form onSubmit={this.handleSubmit}>
+      <div className="Content" ref={(el) => { this.messagesEnd = el; }}>
+          {messages.length > 0 &&
+            messages.map( msg => {
+              return(
+                <Bubble type={msg.type} text={msg.content} />
+              );
+            })
+          }
+        {/*}<Suggestions />*/}
+        <form className='chatUser' onSubmit={this.handleSubmit}>
             <Input value={userMessage} getTextArea={this.getTextArea}/>
+            <input type='submit' value='Envoyer'/>
+            <button></button>
         </form>
       </div>
     );
