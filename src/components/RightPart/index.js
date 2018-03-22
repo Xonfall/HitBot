@@ -23,7 +23,7 @@ class RightPart extends Component {
       <div className='RightPart'>
       	<Tabs>
           <TabList>
-            <Tab>Artistes</Tab>
+            <Tab>Artiste</Tab>
             <Tab>Recommandations</Tab>
             <Tab>Paroles</Tab>
             <Tab>Profil</Tab>

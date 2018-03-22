@@ -28,6 +28,17 @@ class Chat extends Component {
     this.messagesEnd.scrollIntoView({ behavior: "smooth" });
   }
 
+  addSecondBubble = () => {
+    const { messages } = this.state;
+    const newMessage = {content: "J'ai pris un peu d'avance en vous affichant la page artiste de Michael Jackson !", type: "bot", key: messages.length}
+    messages.push(newMessage)
+    this.setState({messages})
+  }
+
+  componentDidMount() {
+    setTimeout(() => {this.addSecondBubble()}, 1000);
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     if (this.state.userMessage) {
@@ -90,7 +101,7 @@ class Chat extends Component {
           <div className='active'>
             <img src="/picto.png"/>
           </div>
-          <Bubble type='bot' text='Bienvenue sur Hit! Posez moi des questions sur vos artistes favoris !' />
+          <Bubble type='bot' text='Bienvenue sur Hit ! Posez moi des questions sur vos artistes favoris !' />
         </section>
           {messages.length > 0 &&
             messages.map( msg => {
