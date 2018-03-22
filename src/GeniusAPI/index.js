@@ -37,7 +37,7 @@ export const doSearch = (slug) => {
   const response = xhr.response;
 
   let json = JSON.parse(response);
-  // let song = json['response']['song'];
+  let song = json['response']['song'];
 
   return(json.response['hits']);
 }
@@ -45,6 +45,7 @@ export const doSearch = (slug) => {
 export const getSong = (title) => {
   const search = doSearch(title);
   const idSong = search.length > 0 ? search[0].result.id : null;
+  console.log(idSong);
 
   let result = null
 

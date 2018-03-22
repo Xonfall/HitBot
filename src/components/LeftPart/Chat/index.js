@@ -6,6 +6,8 @@ import { requestServer } from '../../../BotAPI';
 import Input from './Input';
 import './style.css';
 
+import axios from 'axios';
+
 class Chat extends Component {
 
   static propTypes = {
@@ -28,10 +30,17 @@ class Chat extends Component {
     const { onArtistSearch } = this.props;
     let newMessage = {content: userMessage, type: "user", key: messages.length}
     messages.push(newMessage)
-    onArtistSearch(userMessage);
     this.setState({messages, userMessage: ''})
 
     let request = requestServer(userMessage, (response) => {
+
+         // axios.get('http://localhost:3000/api/music')
+         // .then(res => {
+         //   console.log(res);
+         //   // this.setState({ data: res.data, loading: false });
+         // })
+
+        onArtistSearch(userMessage);
         let result = response.result.fulfillment.speech;
         newMessage = {content: result, type: "bot", key: messages.length}
         messages.push(newMessage)
