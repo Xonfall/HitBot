@@ -120,6 +120,12 @@
     to {opacity: 1;}
 }
 
+.imgBubble {
+  	object-fit: cover;
+  	display: block;
+  	width: 200px !important;
+}
+
 .bot {
     padding: 20px;
     max-width:60%;

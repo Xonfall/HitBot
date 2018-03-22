@@ -83,7 +83,6 @@ class Chat extends Component {
       let request = requestServer(userMessage, (response) => {
 
         const action = response.result.action;
-        console.log(response);
 
         if (action === "action.music.search.artist" && response.result.parameters.title) {
             const artist = onSearch('artist', response.result.parameters.title);
@@ -107,6 +106,26 @@ class Chat extends Component {
               messageContent += song.title;
               messageContent += ', ';
             })
+
+            newMessage = {content: messageContent, type: "bot", key: messages.length}
+            messages.push(newMessage)
+            this.setState({messages})
+        } else if (action === "action.music.infos" && response.result.parameters.title) {
+            const song = onSearch('song', response.result.parameters.title);
+            let messageContent = song.title+' est une chanson de ' + song.artist + ' sorti le ' + song.release_date + ' sur l\'album '+ song.album_title + '.';
+
+            newMessage = {content: messageContent, type: "bot", key: messages.length}
+            messages.push(newMessage)
+            this.setState({messages})
+
+            setTimeout(() => {
+              newMessage = {content: "", type: "bot", key: messages.length, img: song.image}
+              messages.push(newMessage)
+              this.setState({messages})
+            }, 2000)
+        } else if (action === "action.music.release.date" && response.result.parameters.title) {
+            const song = onSearch('song', response.result.parameters.title);
+            let messageContent = song.title+' est sorti le ' + song.release_date + '.';
 
             newMessage = {content: messageContent, type: "bot", key: messages.length}
             messages.push(newMessage)
@@ -146,7 +165,7 @@ class Chat extends Component {
                   <div className={ msg.type === 'user' ? 'active userCase' : 'hidden' }>
                     <i className="fa fa-user"></i>
                   </div>
-                  <Bubble type={msg.type} text={msg.content} />
+                  <Bubble type={msg.type} text={msg.content} img={msg.img} />
                 </section>
               );
             })

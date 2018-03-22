@@ -36,6 +36,8 @@ class App extends Component {
       this.setState({
         songs: result
       });
+    } else if (type === 'song') {
+      result = getSong(name);
     }
 
     return result;
