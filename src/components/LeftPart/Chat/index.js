@@ -11,7 +11,7 @@ import axios from 'axios';
 class Chat extends Component {
 
   static propTypes = {
-      onArtistSearch: PropTypes.func.isRequired,
+      onSearch: PropTypes.func.isRequired,
    };
 
   state = {
@@ -30,27 +30,54 @@ class Chat extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { userMessage, messages } = this.state;
-    const { onArtistSearch } = this.props;
-    let newMessage = {content: userMessage, type: "user", key: messages.length}
-    messages.push(newMessage)
-    this.setState({messages, userMessage: ''})
+    if (this.state.userMessage) {
+      const { userMessage, messages } = this.state;
+      const { onSearch } = this.props;
+      let newMessage = {content: userMessage, type: "user", key: messages.length}
+      messages.push(newMessage)
+      this.setState({messages, userMessage: ''})
 
-    let request = requestServer(userMessage, (response) => {
+      let request = requestServer(userMessage, (response) => {
 
-         // axios.get('http://localhost:3000/api/music')
-         // .then(res => {
-         //   console.log(res);
-         //   // this.setState({ data: res.data, loading: false });
-         // })
+        const action = response.result.action;
+        console.log(response);
 
-        onArtistSearch(userMessage);
-        let result = response.result.fulfillment.speech;
-        newMessage = {content: result, type: "bot", key: messages.length}
-        messages.push(newMessage)
-        this.setState({messages})
-    });
-    this.scrollToBottom();
+        if (action === "action.music.search.artist" && response.result.parameters.title) {
+            const artist = onSearch('artist', response.result.parameters.title);
+            const messageContent = 'Cette chanson est interprétée par ' + artist.name+'.';
+
+            newMessage = {content: messageContent, type: "bot", key: messages.length}
+            messages.push(newMessage)
+            this.setState({messages})
+
+        } else if (action === "action.music.infos.artist" && response.result.parameters.artist) {
+            const artist = onSearch('artist', response.result.parameters.artist);
+            const messageContent = artist.name+' est un artiste. Regardez à droite, je vous ai mis sa biographie !';
+
+            newMessage = {content: messageContent, type: "bot", key: messages.length}
+            messages.push(newMessage)
+            this.setState({messages})
+        } else if (action === "action.artist.songs" && response.result.parameters.artist) {
+            const songs = onSearch('songs', response.result.parameters.artist);
+            let messageContent = 'Voici quelques chansons de ' + songs[0].artist + ' : ';
+            songs.map(song => {
+              messageContent += song.title;
+              messageContent += ', ';
+            })
+
+            newMessage = {content: messageContent, type: "bot", key: messages.length}
+            messages.push(newMessage)
+            this.setState({messages})
+        } else {
+          newMessage = {content: response.result.fulfillment.speech, type: "bot", key: messages.length}
+          messages.push(newMessage)
+          this.setState({messages})
+        }
+
+      });
+    } else {
+      return false;
+    }
   }
 
   render() {
@@ -69,7 +96,7 @@ class Chat extends Component {
                   <div className={ msg.type === 'user' ? 'active userCase' : 'hidden' }>
                     <i class="fa fa-user"></i>
                   </div>
-                  <Bubble type={msg.type} text={msg.content} />
+                  <Bubble key={msg.key} type={msg.type} text={msg.content} />
                 </section>
               );
             })

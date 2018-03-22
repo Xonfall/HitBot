@@ -10,27 +10,6 @@ musixURL = "http://api.musixmatch.com/ws/1.1/track.search";
 
 const xhr = new XMLHttpRequest(); //XML HTTP Request
 
-// export const getLyrics = (slug) => {
-//   // console.log("http://api.musixmatch.com/ws/1.1/track.search?apikey=03d5f80e88e40ca17ea9d78f326c84ee&q_artist=queen&q_track=we%20are%20the%20champions&format=json&page_size=1&f_has_lyrics=1");
-//   xhr.open("POST", "http://api.musixmatch.com/ws/1.1/track.search?apikey=03d5f80e88e40ca17ea9d78f326c84ee&q_artist=queen&q_track=we%20are%20the%20champions&format=json&page_size=1&f_has_lyrics=1", false);
-//   xhr.setRequestHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-//   console.log(xhr);
-//   xhr.send();
-//   const response = xhr.response;
-//
-// }
-//
-// export const getSongs = (id) => {
-//   xhr.open("GET", APISong+id+"?"+accessToken, false);
-//   xhr.send();
-//   const response = xhr.response;
-//
-//   let json = JSON.parse(response);
-//   let song = json['response']['song'];
-//
-//   return(song);
-// }
-
 export const doSearch = (slug) => {
   xhr.open("GET", APISearch+slug+"&"+accessToken, false);
   xhr.send();
@@ -91,4 +70,19 @@ export const getArtist = (name) => {
   }
 
   return(result);
+}
+
+export const getSongs = (name) => {
+  const search = doSearch(name);
+
+  const songs = [];
+
+  search.map(song => {
+    songs.push({
+      title: song.result.title,
+      artist: song.result.primary_artist.name,
+      image: song.result.header_image_url
+    })
+  });
+  return songs;
 }
