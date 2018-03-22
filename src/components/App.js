@@ -38,6 +38,10 @@ class App extends Component {
       });
     } else if (type === 'song') {
       result = getSong(name);
+      this.setState({
+        artist: getArtist(result.artist),
+        recommanded: getSongs(result.artist),
+      });
     }
 
     return result;
