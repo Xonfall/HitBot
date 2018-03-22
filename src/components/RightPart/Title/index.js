@@ -14,8 +14,8 @@ class Title extends React.Component {
 
     return (
       <section className='Title'>
-      	<h2 className='subtitle'>{name}</h2>
-      	<h3>Sous-titre</h3>
+      	<h2 className='subtitle'>{this.props.name}</h2>
+      	<h3>{this.props.subname}</h3>
       </section>
     )
   }
