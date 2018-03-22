@@ -2,11 +2,12 @@
 	overflow:hidden;
 	position:absolute;
 	width:45%;
-	min-height:calc(100vh - 90px);
+	min-height:100vh;
 	top:0;
 	right:0;
 	background:#171717;
 }
+
 
 .RightPart span, .RightPart a, .RightPart p{
 	color:#FAFAFA;
@@ -15,6 +16,7 @@
 .react-tabs__tab-list{
 	position: fixed;
 	width:45%;
+	height:60px;
 	overflow:hidden;
 	color:#FAFAFA!important;
 	top:0;
@@ -51,4 +53,28 @@
 
 .react-tabs__tab--selected:before{
 	width: 100%;
+}
+
+@media screen and (max-width:960px){
+	.RightPart{
+		width:100%;
+		right:-100%;
+		position:relative;
+		overflow:hidden;
+	}
+	.RightPart.active .react-tabs__tab-list{
+		display:block;
+	}
+	.RightPart.active{
+		overflow:auto;
+	}
+	.react-tabs__tab-list{
+		top:auto;
+		display:none;
+		height:60px;
+		position:fixed;
+		border-bottom:solid 0px #393939;
+		border-top:solid 0px #393939;
+		bottom:0px;
+	}
 }

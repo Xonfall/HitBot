@@ -6,3 +6,9 @@
 	left:0;
 	background:#F4F4F4;
 }
+
+@media screen and (max-width:960px){
+	.LeftPart{
+		width:100%;
+	}
+}

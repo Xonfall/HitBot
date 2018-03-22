@@ -1,6 +1,7 @@
 .bannerImg{
 	width:100%;
 	height:300px;
+	margin-top:20px!important;
 	background:red;
 	background-size:cover;
 	background-position:center;
