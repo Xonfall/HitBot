@@ -4,6 +4,7 @@ import RightPart from './RightPart';
 
 class App extends Component {
 
+
   render() {
 
     return (
