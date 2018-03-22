@@ -22,9 +22,8 @@ class Artist extends React.Component {
     return (
       <section>
         <Fullimg src={artist.image}/>
-        <Back/>
         <Title name={artist.name} />
-        <Parole/>
+        <Parole text={artist.description} />
         <List/>
         <List/>
       </section>

@@ -15,7 +15,7 @@ class Title extends React.Component {
     return (
       <section className='Title'>
       	<h2 className='subtitle'>{name}</h2>
-      	<h3>Sous-titre</h3>
+      	<h3>Page Artiste</h3>
       </section>
     )
   }
