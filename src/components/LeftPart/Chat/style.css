@@ -1,42 +1,28 @@
-.App-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #222;
-  height: 120px;
-  color: white;
-  text-align: center;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
 .Content {
-  width: 100%;
-  padding-top: 20px;
+  width: 350px;
+  margin: auto;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 500px;
+  overflow: auto;
 }
 
-.Textarea {
+.Input {
   padding: 10px;
-  width: 418px;
-  min-width: 418px;
-  min-height: 40px;
+  width: 100%;
   border-radius: 4px;
   border: 1px solid rgba(0,0,0,0.3);
-  cursor: pointer;
 }
-.Textarea:focus {
+.Input:focus {
   outline: none;
   border: 1px solid rgba(0,0,0,0.6);
 }
 
 .user {
     padding: 20px;
-    width: 400px;
+    width: 100%;
     background-color: #FFCDD2;
     border-radius: 4px;
     margin-bottom: 20px;
@@ -45,7 +31,7 @@
 
 .bot {
     padding: 20px;
-    width: 400px;
+    width: 100%;
     background-color: #FFF9C4;
     border-radius: 4px;
     margin-bottom: 20px;

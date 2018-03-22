@@ -1,0 +1,29 @@
+.Card{
+	background:red;
+	min-height:180px;
+	border-radius:12px;
+	overflow:hidden;
+	position:relative;
+}
+.Card div{
+	position:absolute;
+	height:50px;
+	background:#fafafa;
+	width:100%;
+	bottom:-50px;
+	left:0;
+	transition:.5s ease-in-out;
+}
+
+.Card:hover div{
+	bottom:0;
+}
+
+.Card div p{
+	color:red;
+	line-height: 50px;
+	text-align:center;
+	width:100%;
+	display:block;
+}
+

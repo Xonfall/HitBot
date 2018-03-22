@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../App.css';
 
 class Bubble extends Component {
 
@@ -14,8 +13,8 @@ class Bubble extends Component {
    const { text, type } = this.props;
 
     return (
-      <div className={type === 'user' ? 'user' : 'bot'}>
-        <span>{text}</span>
+      <div className={ type === 'user' ? 'user' : 'bot' }>
+        <span>{ text }</span>
       </div>
     );
   }

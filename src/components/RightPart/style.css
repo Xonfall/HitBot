@@ -1,0 +1,13 @@
+.RightPart{
+	padding-top:90px;
+	overflow:hidden;
+	position:absolute;
+	width:45%;
+	min-height:calc(100vh - 90px);
+	top:0;
+	right:0;
+	background:#171717;
+}
+.RightPart span, .RightPart a, .RightPart p{
+	color:#FAFAFA;
+}
