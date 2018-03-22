@@ -11,12 +11,20 @@ class App extends Component {
     artist: null,
   }
 
+  // componentWillMount() {
+  //   const artist = getArtist("Kendrick Lamar");
+  //   this.setState({
+  //     artist
+  //   })
+  // }
+
   onArtistSearch = (name) => {
     const artist = getArtist(name);
-    console.log(artist);
-    // this.setState({
-    //   artist
-    // })
+    this.setState({
+      artist
+    })
+
+    return artist;
   }
 
   // callBotApi = () => {
@@ -29,8 +37,10 @@ class App extends Component {
   render() {
 
     const { artist } = this.state;
-    const search = doSearch('J\'ai neuf pussy, pas neuf fusils qui me font la cour');
-    console.log(search);
+    // const search = getArtist('We are the champions');
+    // console.log(search);
+
+
 
     return (
       <div className="App">

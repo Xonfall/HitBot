@@ -30,27 +30,43 @@ class Chat extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { userMessage, messages } = this.state;
-    const { onArtistSearch } = this.props;
-    let newMessage = {content: userMessage, type: "user", key: messages.length}
-    messages.push(newMessage)
-    this.setState({messages, userMessage: ''})
+    if (this.state.userMessage) {
+      const { userMessage, messages } = this.state;
+      const { onArtistSearch } = this.props;
+      let newMessage = {content: userMessage, type: "user", key: messages.length}
+      messages.push(newMessage)
+      this.setState({messages, userMessage: ''})
 
-    let request = requestServer(userMessage, (response) => {
+      let request = requestServer(userMessage, (response) => {
 
-         // axios.get('http://localhost:3000/api/music')
-         // .then(res => {
-         //   console.log(res);
-         //   // this.setState({ data: res.data, loading: false });
-         // })
+          const search = {
+            action: response.result.action,
+            title: response.result.parameters.title,
+          }
 
-        onArtistSearch(userMessage);
-        let result = response.result.fulfillment.speech;
-        newMessage = {content: result, type: "bot", key: messages.length}
-        messages.push(newMessage)
-        this.setState({messages})
-    });
-    this.scrollToBottom();
+              console.log(search);
+
+          if (search.title && search.action === "action.music.search.artist") {
+              const artist = onArtistSearch(search.title);
+              const messageContent = 'Cette chanson est interprétée par ' + artist.name+'.';
+
+              newMessage = {content: messageContent, type: "bot", key: messages.length}
+              messages.push(newMessage)
+              this.setState({messages})
+
+          } else if (search.title && search.action === "action.music.infos.artist") {
+
+          } else {
+
+              newMessage = {content: response.result.fulfillment.speech, type: "bot", key: messages.length}
+              messages.push(newMessage)
+              this.setState({messages})
+
+          }
+      });
+    } else {
+      return false;
+    }
   }
 
   render() {
@@ -62,7 +78,7 @@ class Chat extends Component {
           {messages.length > 0 &&
             messages.map( msg => {
               return(
-                <Bubble type={msg.type} text={msg.content} />
+                <Bubble key={msg.key} type={msg.type} text={msg.content} />
               );
             })
           }
