@@ -1,0 +1,74 @@
+.formProfile{
+	width:calc(45% - 25px);
+	margin-right:50px;
+	float:left;
+}
+
+.formProfile:nth-of-type(1){
+	margin-left:5%;
+}
+
+.formProfile:nth-of-type(2n){
+	margin-right:0;
+}
+.formProfile .Title{
+	margin-bottom:0;
+}
+.formProfile h2{
+	margin:0;
+}
+
+.formProfile input{
+	display:block;
+	width:100%;
+	border:none;
+	padding:0;
+	margin-bottom:20px;
+	font-size:15px;
+	position:relative;
+	color:#F4F4F4;
+	background:none;
+	border-bottom:1px solid #272727;
+	line-height:20px;
+	padding:0 5px;
+	transition:.4s;
+	box-sizing:border-box;
+}
+
+.formProfile input:focus{
+	outline:none;
+	border-bottom:1px solid #F4F4F4;
+}
+
+.formProfile a{
+	display:block;
+	box-sizing:border-box;
+	border-radius:5px;
+	background:#4468B0;
+	opacity:1;
+	transition:.5s;
+	padding:10px 20px 10px 40px ;
+	margin-bottom:15px;
+}
+
+.formProfile a:last-child{
+	background:#00aced;
+}
+.formProfile a i{
+	padding-right:10px;
+}
+
+.formProfile input[type='submit']{
+	cursor:pointer;
+	opacity:1;
+	transition:.5s;
+	background:#EB5325;
+	border-bottom:none;
+	padding:10px 20px;
+	box-sizing:border-box;
+	border-radius:5px;
+}
+
+.formProfile a:hover, .formProfile input[type='submit']:hover{
+	opacity:.8;
+}

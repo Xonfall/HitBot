@@ -14,8 +14,13 @@ class Title extends React.Component {
 
     return (
       <section className='Title'>
+<<<<<<< HEAD
       	<h2 className='subtitle'>{name}</h2>
       	<h3>Page Artiste</h3>
+=======
+      	<h2 className='subtitle'>{this.props.name}</h2>
+      	<h3>{this.props.subname}</h3>
+>>>>>>> jawed
       </section>
     )
   }
