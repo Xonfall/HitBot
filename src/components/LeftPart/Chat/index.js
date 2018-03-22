@@ -4,6 +4,7 @@ import Bubble from './bubble';
 import Suggestions from '../Suggestions';
 import { requestServer } from '../../../BotAPI';
 import Input from './Input';
+import SpeechRecognition from 'react-speech-recognition';
 import './style.css';
 
 import axios from 'axios';
@@ -11,6 +12,11 @@ import axios from 'axios';
 class Chat extends Component {
 
   static propTypes = {
+    // Props injected by SpeechRecognition
+    transcript: PropTypes.string,
+    resetTranscript: PropTypes.func,
+    browserSupportsSpeechRecognition: PropTypes.bool,
+
       onSearch: PropTypes.func.isRequired,
    };
 
@@ -18,6 +24,10 @@ class Chat extends Component {
       message: null,
       messages: [],
       userMessage: "",
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({userMessage: nextProps.transcript});
   }
 
   getTextArea = (text) => {
@@ -43,9 +53,10 @@ class Chat extends Component {
     e.preventDefault();
     if (this.state.userMessage) {
       const { userMessage, messages } = this.state;
-      const { onSearch } = this.props;
+      const { onSearch, resetTranscript } = this.props;
       let newMessage = {content: userMessage, type: "user", key: messages.length}
-      messages.push(newMessage)
+      messages.push(newMessage);
+      resetTranscript();
       this.setState({messages, userMessage: ''})
 
       let request = requestServer(userMessage, (response) => {
@@ -94,6 +105,7 @@ class Chat extends Component {
   render() {
 
       const { messages, userMessage } = this.state;
+      const { transcript, resetTranscript, browserSupportsSpeechRecognition } = this.props
 
     return (
       <div className="Content" ref={(el) => { this.messagesEnd = el; }}>
@@ -122,11 +134,11 @@ class Chat extends Component {
         <form className='chatUser' onSubmit={this.handleSubmit}>
             <Input value={userMessage} getTextArea={this.getTextArea}/>
             <input type='submit' value='Envoyer'/>
-            <button><i className="fa fa-microphone"></i></button>
+            <button onClick={resetTranscript}><i className="fa fa-microphone"></i></button>
         </form>
       </div>
     );
   }
 }
 
-export default Chat;
+export default SpeechRecognition(Chat);
