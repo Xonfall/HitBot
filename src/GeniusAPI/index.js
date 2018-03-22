@@ -11,32 +11,25 @@ musixURL = "http://api.musixmatch.com/ws/1.1/track.search";
 const xhr = new XMLHttpRequest(); //XML HTTP Request
 
 // export const getLyrics = (slug) => {
-//   console.log("http://api.musixmatch.com/ws/1.1/track.search?apikey=03d5f80e88e40ca17ea9d78f326c84ee&q_artist=queen&q_track=we%20are%20the%20champions&format=json&page_size=1&f_has_lyrics=1");
-//   xhr.open("GET", "http://api.musixmatch.com/ws/1.1/track.search?apikey=03d5f80e88e40ca17ea9d78f326c84ee&q_artist=queen&q_track=we%20are%20the%20champions&format=json&page_size=1&f_has_lyrics=1", false);
+//   // console.log("http://api.musixmatch.com/ws/1.1/track.search?apikey=03d5f80e88e40ca17ea9d78f326c84ee&q_artist=queen&q_track=we%20are%20the%20champions&format=json&page_size=1&f_has_lyrics=1");
+//   xhr.open("POST", "http://api.musixmatch.com/ws/1.1/track.search?apikey=03d5f80e88e40ca17ea9d78f326c84ee&q_artist=queen&q_track=we%20are%20the%20champions&format=json&page_size=1&f_has_lyrics=1", false);
 //   xhr.setRequestHeader("Access-Control-Allow-Origin", "http://localhost:3000");
 //   console.log(xhr);
 //   xhr.send();
 //   const response = xhr.response;
 //
-//   console.log(response);
+// }
+//
+// export const getSongs = (id) => {
+//   xhr.open("GET", APISong+id+"?"+accessToken, false);
+//   xhr.send();
+//   const response = xhr.response;
 //
 //   let json = JSON.parse(response);
 //   let song = json['response']['song'];
 //
 //   return(song);
-//
 // }
-
-export const getSongs = (id) => {
-  xhr.open("GET", APISong+id+"?"+accessToken, false);
-  xhr.send();
-  const response = xhr.response;
-
-  let json = JSON.parse(response);
-  let song = json['response']['song'];
-
-  return(song);
-}
 
 export const doSearch = (slug) => {
   xhr.open("GET", APISearch+slug+"&"+accessToken, false);
@@ -49,21 +42,51 @@ export const doSearch = (slug) => {
   return(json.response['hits']);
 }
 
+export const getSong = (title) => {
+  const search = doSearch(title);
+  const idSong = search.length > 0 ? search[0].result.id : null;
+
+  let result = null
+
+  if(idSong !== null) {
+    xhr.open("GET", APISong+idSong+"?text_format=html&"+accessToken, false);
+    xhr.send();
+    const response = xhr.response;
+
+    let json = JSON.parse(response);
+    let song = json['response'].song;
+
+    result  = {
+      title: song.title,
+      release_date: song.release_date,
+      image: song.song_art_image_url,
+      album_title: song.album.name,
+      artist: song.primary_artist.name,
+    }
+  }
+
+  return(result);
+}
+
 export const getArtist = (name) => {
   const search = doSearch(name);
-  const idArtist = search[0].result.primary_artist.id;
+  const idArtist = search.length > 0 ? search[0].result.primary_artist.id : null;
+  let result = null
 
-  xhr.open("GET", APIArtist+idArtist+"?text_format=html&"+accessToken, false);
-  xhr.send();
-  const response = xhr.response;
+  if(idArtist !== null) {
+    xhr.open("GET", APIArtist+idArtist+"?text_format=html&"+accessToken, false);
+    xhr.send();
+    const response = xhr.response;
 
-  let json = JSON.parse(response);
-  let artist = json['response'].artist;
+    let json = JSON.parse(response);
+    let artist = json['response'].artist;
 
-  let result  = {
-    name: artist.name,
-    image: artist.image_url,
-    description: artist.description.html,
+    result  = {
+      name: artist.name,
+      image: artist.image_url,
+      description: artist.description.html,
+      id: artist.id,
+    }
   }
 
   return(result);
