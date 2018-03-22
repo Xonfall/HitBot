@@ -6,12 +6,18 @@ import './style.css';
 
 class LeftPart extends Component {
 
+  static propTypes = {
+      onArtistSearch: PropTypes.func.isRequired,
+   };
+
   render() {
+
+    const { onArtistSearch } = this.props;
 
     return(
       <div className='LeftPart'>
         <Logo />
-        <Chat />
+        <Chat onArtistSearch={this.props.onArtistSearch} />
       </div>
     );
   }

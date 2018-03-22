@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Bubble from './bubble';
 import Suggestions from '../Suggestions';
-import { doSearch, getSongs, getArtist, getLyrics } from '../../../GeniusAPI';
 import { requestServer } from '../../../BotAPI';
 import Input from './Input';
 import './style.css';
 
 class Chat extends Component {
+
+  static propTypes = {
+      onArtistSearch: PropTypes.func.isRequired,
+   };
+
   state = {
       message: null,
       messages: [],
@@ -21,13 +25,15 @@ class Chat extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { userMessage, messages } = this.state;
-    let newMessage = {content: userMessage, type: "user"}
+    const { onArtistSearch } = this.props;
+    let newMessage = {content: userMessage, type: "user", key: messages.length}
     messages.push(newMessage)
+    onArtistSearch(userMessage);
     this.setState({messages, userMessage: ''})
 
     let request = requestServer(userMessage, (response) => {
         let result = response.result.fulfillment.speech;
-        newMessage = {content: result, type: "bot"}
+        newMessage = {content: result, type: "bot", key: messages.length}
         messages.push(newMessage)
         this.setState({messages})
     });
@@ -35,21 +41,20 @@ class Chat extends Component {
 
   render() {
 
-      // const search = getArtist('Booba');
-      // const songs = doSearch('Booba');
-
       const { messages, userMessage } = this.state;
 
     return (
       <div className="Content">
-          {messages.length > 0 &&
-            messages.map( msg => {
-              return(
-                <Bubble type={msg.type} text={msg.content} />
-              );
-            })
-          }
-        {/*}<Suggestions />*/}
+        <div className="MessagesContent">
+            {messages.length > 0 &&
+              messages.map( msg => {
+                return(
+                  <Bubble key={msg.key} type={msg.type} text={msg.content} />
+                );
+              })
+            }
+          {/*}<Suggestions />*/}
+        </div>
         <form onSubmit={this.handleSubmit}>
             <Input value={userMessage} getTextArea={this.getTextArea}/>
         </form>
