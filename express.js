@@ -4,13 +4,14 @@ const app = express()
 
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
-app.get('/bot/api', function (req, res) {
+
+/*app.get('/bot/api', function (req, res) {
     console.log(req)
     //console.log(res)
     res.send('Hello World!')
-  })
+  })*/
 
-  app.post('/post', function (req, res) {
+  app.post('/api/music', function (req, res) {
     let categorie = req.body.result.action;
     let musicTitle = req.body.result.parameters.any;
 
