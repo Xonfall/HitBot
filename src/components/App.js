@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LeftPart from './LeftPart';
 import RightPart from './RightPart';
-import { doSearch, getSong, getArtist } from '../GeniusAPI';
+import { doSearch, getSongs, getArtist } from '../GeniusAPI';
 
 import axios from 'axios';
 
@@ -9,14 +9,31 @@ class App extends Component {
 
   state = {
     artist: null,
+    songs: null,
   }
 
-  onArtistSearch = (name) => {
-    const artist = getArtist(name);
-    console.log(artist);
-    // this.setState({
-    //   artist
-    // })
+  // componentWillMount() {
+  //   const artist = getArtist("Kendrick Lamar");
+  //   this.setState({
+  //     artist
+  //   })
+  // }
+
+  onSearch = (type, name) => {
+    let result = null;
+    if (type === 'artist') {
+      result = getArtist(name);
+      this.setState({
+        artist: result
+      });
+    } else if (type === 'songs') {
+      result = getSongs(name);
+      this.setState({
+        songs: result
+      });
+    }
+
+    return result;
   }
 
   // callBotApi = () => {
@@ -29,12 +46,14 @@ class App extends Component {
   render() {
 
     const { artist } = this.state;
-    const search = doSearch('J\'ai neuf pussy, pas neuf fusils qui me font la cour');
-    console.log(search);
+    // const search = getArtist('We are the champions');
+    // console.log(search);
+
+
 
     return (
       <div className="App">
-          <LeftPart onArtistSearch={this.onArtistSearch} />
+          <LeftPart onSearch={this.onSearch} />
           <RightPart artist={artist && artist} />
       </div>
     );
