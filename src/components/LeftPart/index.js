@@ -7,17 +7,17 @@ import './style.css';
 class LeftPart extends Component {
 
   static propTypes = {
-      onArtistSearch: PropTypes.func.isRequired,
+      onSearch: PropTypes.func.isRequired,
    };
 
   render() {
 
-    const { onArtistSearch } = this.props;
+    const { onSearch } = this.props;
 
     return(
       <div className='LeftPart'>
         <Logo />
-        <Chat onArtistSearch={this.props.onArtistSearch} />
+        <Chat onSearch={onSearch} />
       </div>
     );
   }

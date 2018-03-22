@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LeftPart from './LeftPart';
 import RightPart from './RightPart';
-import { doSearch, getSong, getArtist } from '../GeniusAPI';
+import { doSearch, getSongs, getArtist } from '../GeniusAPI';
 
 import axios from 'axios';
 
@@ -9,6 +9,7 @@ class App extends Component {
 
   state = {
     artist: null,
+    songs: null,
   }
 
   // componentWillMount() {
@@ -18,13 +19,21 @@ class App extends Component {
   //   })
   // }
 
-  onArtistSearch = (name) => {
-    const artist = getArtist(name);
-    this.setState({
-      artist
-    })
+  onSearch = (type, name) => {
+    let result = null;
+    if (type === 'artist') {
+      result = getArtist(name);
+      this.setState({
+        artist: result
+      });
+    } else if (type === 'songs') {
+      result = getSongs(name);
+      this.setState({
+        songs: result
+      });
+    }
 
-    return artist;
+    return result;
   }
 
   // callBotApi = () => {
@@ -44,7 +53,7 @@ class App extends Component {
 
     return (
       <div className="App">
-          <LeftPart onArtistSearch={this.onArtistSearch} />
+          <LeftPart onSearch={this.onSearch} />
           <RightPart artist={artist && artist} />
       </div>
     );

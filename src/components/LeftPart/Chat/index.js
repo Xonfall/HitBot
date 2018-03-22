@@ -11,7 +11,7 @@ import axios from 'axios';
 class Chat extends Component {
 
   static propTypes = {
-      onArtistSearch: PropTypes.func.isRequired,
+      onSearch: PropTypes.func.isRequired,
    };
 
   state = {
@@ -32,37 +32,48 @@ class Chat extends Component {
     e.preventDefault();
     if (this.state.userMessage) {
       const { userMessage, messages } = this.state;
-      const { onArtistSearch } = this.props;
+      const { onSearch } = this.props;
       let newMessage = {content: userMessage, type: "user", key: messages.length}
       messages.push(newMessage)
       this.setState({messages, userMessage: ''})
 
       let request = requestServer(userMessage, (response) => {
 
-          const search = {
-            action: response.result.action,
-            title: response.result.parameters.title,
-          }
+        const action = response.result.action;
+        console.log(response);
 
-              console.log(search);
+        if (action === "action.music.search.artist" && response.result.parameters.title) {
+            const artist = onSearch('artist', response.result.parameters.title);
+            const messageContent = 'Cette chanson est interprétée par ' + artist.name+'.';
 
-          if (search.title && search.action === "action.music.search.artist") {
-              const artist = onArtistSearch(search.title);
-              const messageContent = 'Cette chanson est interprétée par ' + artist.name+'.';
+            newMessage = {content: messageContent, type: "bot", key: messages.length}
+            messages.push(newMessage)
+            this.setState({messages})
 
-              newMessage = {content: messageContent, type: "bot", key: messages.length}
-              messages.push(newMessage)
-              this.setState({messages})
+        } else if (action === "action.music.infos.artist" && response.result.parameters.artist) {
+            const artist = onSearch('artist', response.result.parameters.artist);
+            const messageContent = artist.name+' est un artiste. Regardez à droite, je vous ai mis sa biographie !';
 
-          } else if (search.title && search.action === "action.music.infos.artist") {
+            newMessage = {content: messageContent, type: "bot", key: messages.length}
+            messages.push(newMessage)
+            this.setState({messages})
+        } else if (action === "action.artist.songs" && response.result.parameters.artist) {
+            const songs = onSearch('songs', response.result.parameters.artist);
+            let messageContent = 'Voici quelques chansons de ' + songs[0].artist + ' : ';
+            songs.map(song => {
+              messageContent += song.title;
+              messageContent += ', ';
+            })
 
-          } else {
+            newMessage = {content: messageContent, type: "bot", key: messages.length}
+            messages.push(newMessage)
+            this.setState({messages})
+        } else {
+          newMessage = {content: response.result.fulfillment.speech, type: "bot", key: messages.length}
+          messages.push(newMessage)
+          this.setState({messages})
+        }
 
-              newMessage = {content: response.result.fulfillment.speech, type: "bot", key: messages.length}
-              messages.push(newMessage)
-              this.setState({messages})
-
-          }
       });
     } else {
       return false;
