@@ -12,12 +12,12 @@ class App extends Component {
     songs: null,
   }
 
-  // componentWillMount() {
-  //   const artist = getArtist("Kendrick Lamar");
-  //   this.setState({
-  //     artist
-  //   })
-  // }
+  componentWillMount() {
+    const artist = getArtist("Kendrick Lamar");
+    this.setState({
+      artist
+    })
+  }
 
   onSearch = (type, name) => {
     let result = null;
