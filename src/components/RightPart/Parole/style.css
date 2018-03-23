@@ -21,6 +21,10 @@
 	color:#FAFAFA;
 	font-size:25px;
 }
+.lyrics img {
+	margin-top: 20px;
+	width: 100%;
+}
 
 .paroles .par{
 	margin-top:25px;

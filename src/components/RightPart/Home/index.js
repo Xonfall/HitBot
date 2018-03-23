@@ -44,7 +44,7 @@ class Home extends Component {
       <section>
         <SwiperCard titre='Musique recommandée pour vous' items={recommandedMusics}/>
         <Ads/>
-        <SwiperCard titre='Artistes recommandés pour vous'/>
+        <SwiperCard titre='Artistes recommandés pour vous' items={recommandedMusics}/>
       </section>
     )
   }
