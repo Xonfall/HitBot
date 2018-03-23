@@ -123,6 +123,12 @@
 }
 
 @media screen and (max-width:960px){
+  .chatUser input[type='submit']{
+    display:none;
+  }
+  .Input{
+    width: calc(100% - 100px);
+  }
   .App{
     overflow:hidden;
   }

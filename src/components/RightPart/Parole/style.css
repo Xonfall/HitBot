@@ -7,7 +7,11 @@
 	display: block;
 	color:#8B8B8B!important;
 }
-
+.lyrics p{
+	width:90%!important;
+	color:#8B8B8B!important;
+	margin:0 auto!important;
+}
 .lyrics h3{
 	color:#FAFAFA;
 	font-size:25px;
