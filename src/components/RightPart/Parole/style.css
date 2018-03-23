@@ -10,7 +10,12 @@
 .lyrics p{
 	width:90%!important;
 	color:#8B8B8B!important;
+	font-size:15px!important;
+	font-weight:lighter!important;
 	margin:0 auto!important;
+}
+.lyrics a{
+	color:#F4F4F4!important;
 }
 .lyrics h3{
 	color:#FAFAFA;
