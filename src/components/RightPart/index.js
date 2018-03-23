@@ -13,14 +13,17 @@ class RightPart extends Component {
   static propTypes = {
       artist: PropTypes.object,
       recommanded: PropTypes.array,
+      displayMenu: PropTypes.func.isRequired,
+      displayMenuBool: PropTypes.bool.isRequired,
    };
 
   render() {
 
-    const { artist, recommanded } = this.props;
+    const { artist, recommanded, displayMenuBool } = this.props;
 
     return (
-      <div className='RightPart'>
+      <div className={displayMenuBool ? 'RightPart active' : 'RightPart'}>
+      <div onClick={this.props.displayMenu} className='menuBurger'><i class="fa fa-angle-left"></i></div>
       	<Tabs>
           <TabList>
             <Tab>Artiste</Tab>

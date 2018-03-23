@@ -11,6 +11,13 @@ class App extends Component {
     artist: null,
     songs: null,
     recommanded: null,
+    displayMenuBool: false,
+  }
+
+  displayMenu = () => {
+    this.setState({
+      displayMenuBool: !this.state.displayMenuBool
+    })
   }
 
   componentWillMount() {
@@ -56,7 +63,7 @@ class App extends Component {
 
   render() {
 
-    const { artist, recommanded } = this.state;
+    const { artist, recommanded, displayMenuBool } = this.state;
     // const search = getArtist('We are the champions');
     // console.log(search);
 
@@ -64,10 +71,12 @@ class App extends Component {
 
     return (
       <div className="App">
-          <LeftPart onSearch={this.onSearch} />
+          <LeftPart onSearch={this.onSearch} displayMenu={this.displayMenu} />
           <RightPart
             artist={artist && artist}
             recommanded={recommanded && recommanded}
+            displayMenu={this.displayMenu}
+            displayMenuBool={displayMenuBool}
           />
       </div>
     );

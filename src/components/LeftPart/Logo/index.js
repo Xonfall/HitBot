@@ -4,12 +4,16 @@ import './style.css';
 
 class LeftPart extends Component {
 
+  static propTypes = {
+    displayMenu: PropTypes.func.isRequired,
+ };
+
   render() {
 
     return (
     	<div className='topLogo'>
     	  <img className='logo' src='/logo.png'/>
-    	  <div className='menuBurger'><div></div></div>
+    	  <div onClick={this.props.displayMenu} className='menuBurger'><div></div></div>
     	</div>
     );
   }

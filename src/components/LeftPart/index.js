@@ -8,15 +8,16 @@ class LeftPart extends Component {
 
   static propTypes = {
       onSearch: PropTypes.func.isRequired,
+      displayMenu: PropTypes.func.isRequired,
    };
 
   render() {
 
-    const { onSearch } = this.props;
+    const { onSearch, displayMenu } = this.props;
 
     return(
       <div className='LeftPart'>
-        <Logo />
+        <Logo displayMenu={displayMenu} />
         <Chat onSearch={onSearch} />
       </div>
     );
