@@ -6,7 +6,9 @@ class Ads extends React.Component {
 
     return (
       <section className='ads'>
-        <a href=''></a>
+        <a href=''>
+          <img src="/AdDeezer.jpg" />
+        </a>
       </section>
     )
   }

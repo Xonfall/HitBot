@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import SpeechRecognition from 'react-speech-recognition';
+// import responsivevoice from 'responsivevoice';
 import Bubble from './bubble';
 import Suggestions from '../Suggestions';
 import { requestServer } from '../../../BotAPI';
 import Input from './Input';
-import SpeechRecognition from 'react-speech-recognition';
 import './style.css';
 
 import axios from 'axios';
@@ -72,7 +73,6 @@ class Chat extends Component {
   }
 
   handleSubmit = (e) => {
-    console.log("test");
     e.preventDefault();
     if (this.state.userMessage) {
       const { userMessage, messages } = this.state;
@@ -94,7 +94,6 @@ class Chat extends Component {
             newMessage = {content: messageContent, type: "bot", key: messages.length}
             messages.push(newMessage)
             this.setState({messages})
-
         } else if (action === "action.music.infos.artist" && response.result.parameters.artist) {
             const artist = onSearch('artist', response.result.parameters.artist);
             const messageContent = artist.name+' est un artiste. Regardez à droite, je vous ai mis sa biographie !';
