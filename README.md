@@ -20,3 +20,14 @@ Voici quelques exemples :
 * Donne moi des informations sur "Bella"
 
 Vous pouvez communiquer avec lui par la voix ou à l'écrit. Hit! est adapté à tous les types d'écrans.
+
+
+### Prérequis
+
+Pour faire fonctionner Hit! il faut au minimum :
+
+* Npm 5.6.0
+
+Pour installer les dépendances, exécutez "npm install".
+
+Et pour lancer Hit! "npm start".
