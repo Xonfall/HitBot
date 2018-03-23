@@ -33,9 +33,10 @@ class Chat extends Component {
     this.setState({userMessage: nextProps.transcript});
   }
 
-  handleMicroButton = () => {
+  handleMicroButton = (e) => {
+    e.preventDefault();
 
-    const { resetTranscript, startListening, stopListening } = this.props;
+    const { startListening, stopListening } = this.props;
     const { recording } = this.state;
 
     if (recording) {
@@ -71,14 +72,16 @@ class Chat extends Component {
   }
 
   handleSubmit = (e) => {
+    console.log("test");
     e.preventDefault();
     if (this.state.userMessage) {
       const { userMessage, messages } = this.state;
-      const { onSearch, resetTranscript } = this.props;
+      const { onSearch, resetTranscript, stopListening } = this.props;
       let newMessage = {content: userMessage, type: "user", key: messages.length}
       messages.push(newMessage);
       resetTranscript();
-      this.setState({messages, userMessage: ''})
+      stopListening();
+      this.setState({messages, userMessage: '', recording: false})
 
       let request = requestServer(userMessage, (response) => {
 
